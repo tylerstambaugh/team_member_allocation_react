@@ -1,7 +1,7 @@
 import femaleProfile from "./images/femaleProfile.jpg";
 import maleProfile from "./images/maleProfile.jpg";
 
-const Employees = ({employees, selectedTeam, handleEmployeeCardClick,  handleTeamSelectionChange}) => {
+const Employees = ({employees, selectedTeam, handleEmployeeCardClick, handleTeamSelectionChange}) => {
   
   return (
     <main className="container">
@@ -34,9 +34,9 @@ const Employees = ({employees, selectedTeam, handleEmployeeCardClick,  handleTea
                 onClick={handleEmployeeCardClick}
               >
                 {employee.gender === "male" ? (
-                  <img src={maleProfile} className="card-img-top" />
+                  <img src={maleProfile} className="card-img-top" alt="" />
                 ) : (
-                  <img src={femaleProfile} className="card-img-top" />
+                  <img src={femaleProfile} className="card-img-top" alt=""/>
                 )}
 
                 <div className="card-body">
