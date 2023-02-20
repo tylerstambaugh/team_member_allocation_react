@@ -3,13 +3,13 @@ import './main.css'
 import Header from './Header';
 import Employees from './Employees';
 import Footer from './Footer';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
 
-  const [selectedTeam, setTeam] = useState("TeamA");
+  const [selectedTeam, setTeam] = useState(JSON.parse(localStorage.getItem('selectedTeam')) || "TeamB");
   
-  const[employees, setEmployees] = useState([{
+  const[employees, setEmployees] = useState(JSON.parse(localStorage.getItem('employeeList')) || [{
     id: 1,
     fullName: "Bob Jones",
     designation: "JavaScript Developer",
@@ -92,7 +92,19 @@ function App() {
     designation: "Graphic Designer",
     gender: "male",
     teamName: "TeamD"
-  }]) 
+  }]);
+
+useEffect(() => {
+
+localStorage.setItem('employeeList',JSON.stringify(employees))
+
+},[employees]);
+
+useEffect(() => {
+
+  localStorage.setItem('selectedTeam',JSON.stringify(selectedTeam))
+
+  },[selectedTeam]);
 
   function handleTeamSelectionChange(event) {
       setTeam(event.target.value);
@@ -100,8 +112,8 @@ function App() {
 
   function handleEmployeeCardClick(event) {
     const transformedEmployees = employees.map((employee) => employee.id === parseInt(event.currentTarget.id)
-      ?(employee.TeamName === selectedTeam) ? {...employee, teamName:''} : {...employee,teamName: selectedTeam}
-      :employee);
+      ?(employee.TeamName === selectedTeam) ? {...employee, teamName: ''} : {...employee, teamName: selectedTeam}
+      : employee);
     setEmployees(transformedEmployees);    
   }
 
