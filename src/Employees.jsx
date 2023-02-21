@@ -1,8 +1,12 @@
 import femaleProfile from "./images/femaleProfile.jpg";
 import maleProfile from "./images/maleProfile.jpg";
 
-const Employees = ({employees, selectedTeam, handleEmployeeCardClick, handleTeamSelectionChange}) => {
-  
+const Employees = ({
+  employees,
+  selectedTeam,
+  handleEmployeeCardClick,
+  handleTeamSelectionChange,
+}) => {
   return (
     <main className="container">
       <div className="row justify-content-center mt-3 mb-3">
@@ -24,6 +28,7 @@ const Employees = ({employees, selectedTeam, handleEmployeeCardClick, handleTeam
           <div className="card-collection">
             {employees.map((employee) => (
               <div
+                key={employee.id}
                 id={employee.id}
                 className={
                   employee.teamName === selectedTeam
@@ -36,7 +41,7 @@ const Employees = ({employees, selectedTeam, handleEmployeeCardClick, handleTeam
                 {employee.gender === "male" ? (
                   <img src={maleProfile} className="card-img-top" alt="" />
                 ) : (
-                  <img src={femaleProfile} className="card-img-top" alt=""/>
+                  <img src={femaleProfile} className="card-img-top" alt="" />
                 )}
 
                 <div className="card-body">
